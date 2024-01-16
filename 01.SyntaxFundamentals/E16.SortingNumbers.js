@@ -5,7 +5,7 @@ function jumpingArray(arr) {
     sorted.push(arr.shift());
     sorted.push(arr.pop());
   }
-  console.log(sorted);
+  return sorted;
 }
 
 jumpingArray([1, 65, 3, 52, 48, 63, 31, -3, 18, 56]);

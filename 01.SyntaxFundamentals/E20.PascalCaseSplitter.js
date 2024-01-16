@@ -6,7 +6,7 @@ function pascalCaseSplitter(word) {
       i++;
     }
   }
-  console.log(sentence.join(""));
+  console.log(sentence.join("").split(" ").join(", "));
 }
 
 pascalCaseSplitter("HelloWorld");

@@ -20,3 +20,4 @@ ageDetermination(14);
 ageDetermination(22);
 ageDetermination(67);
 ageDetermination(-2);
+ageDetermination(-5);

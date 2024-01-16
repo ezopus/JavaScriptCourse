@@ -3,7 +3,7 @@ function arrayNthStep(arr, step) {
   for (let i = 0; i < arr.length; i += step) {
     steppedArr.push(arr[i]);
   }
-  console.log(steppedArr);
+  return steppedArr;
 }
 
 arrayNthStep(["5", "20", "31", "4", "20"], 2);
