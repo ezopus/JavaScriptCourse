@@ -1,11 +1,16 @@
 function findSubstring(word, text) {
-  word = word.toLowerCase();
-  text = text.toLowerCase();
-  if (text.includes(word)) {
-    console.log(word);
-  } else {
-    console.log(`${word} not found!`);
+  let textArr = text.toLowerCase().split(" ");
+  let result = `${word} not found!`;
+
+  for (w of textArr) {
+    if (w === word) {
+      result = word;
+    }
   }
+
+  console.log(result);
 }
 
 findSubstring("javascript", "JavaScript is the best programming language");
+
+// findSubstring(" ", " ");
