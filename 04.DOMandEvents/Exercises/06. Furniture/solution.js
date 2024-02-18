@@ -65,6 +65,4 @@ function solve() {
         tableRow.appendChild(markCell);
         return tableRow;
     }
-
-
 }
