@@ -2,7 +2,6 @@ async function loadCommits() {
     // Try it with Fetch API
     const user = document.querySelector("#username").value;
     const repo = document.querySelector("#repo").value;
-
     const listOutput = document.querySelector("#commits");
     listOutput.innerHTML = "";
 
