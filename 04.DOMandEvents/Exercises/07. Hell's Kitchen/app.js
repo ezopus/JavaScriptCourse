@@ -6,7 +6,7 @@ function solve() {
         restaurantTokens = JSON.parse(restaurantTokens);
 
         const restaurants = restaurantTokens.reduce((acc, curr) => {
-            const [name, ...workers] = curr
+            let [name, ...workers] = curr
                 .split(/[ ]?[,-][ ]?/g)
                 .filter(w => w.length >= 1);
 
@@ -23,16 +23,20 @@ function solve() {
             return acc;
         }, {});
 
-
         const bestRestaurant = Object.keys(restaurants)
             .sort((a, b) => restaurants[b].totalSalary / restaurants[b].workers.length - restaurants[a].totalSalary / restaurants[a].workers.length)[0];
 
-        const averageBestSalary = restaurants[bestRestaurant].totalSalary / restaurants[bestRestaurant].workers.length;
+        const averageBestSalary = restaurants[bestRestaurant].workers.length !== 0
+            ? restaurants[bestRestaurant].totalSalary / restaurants[bestRestaurant].workers.length
+            : 0;
         const bestSalary = restaurants[bestRestaurant].workers.map(w => w.salary).sort((a, b) => b - a)[0];
 
         document.querySelector("#bestRestaurant p").textContent = `Name: ${bestRestaurant} Average Salary: ${averageBestSalary.toFixed(2)} Best Salary: ${bestSalary.toFixed(2)}`;
 
-        const workersOutput = restaurants[bestRestaurant].workers.map(w => `Name: ${w.workerName} With Salary: ${w.salary}`).join(" ");
+        const workersOutput = restaurants[bestRestaurant].workers
+            .sort((a, b) => b.salary - a.salary)
+            .map(w => `Name: ${w.workerName} With Salary: ${w.salary}`)
+            .join(" ");
 
         document.querySelector("#workers p").textContent = workersOutput;
     }

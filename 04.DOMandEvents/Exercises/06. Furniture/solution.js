@@ -35,7 +35,7 @@ function solve() {
 
         outputBox.textContent += `Bought furniture: ${names.join(", ")}\n`;
         outputBox.textContent += `Total price: ${price.toFixed(2)}\n`;
-        outputBox.textContent += `Average decoration factor: ${Number(decFactors.toFixed(2))}`;
+        outputBox.textContent += `Average decoration factor: ${Number(decFactors)}`;
     }
 
     function createNextRow(input) {
