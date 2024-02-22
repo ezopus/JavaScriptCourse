@@ -3,20 +3,26 @@ function checkPassword(password) {
 
   function digitsCount(password) {
     const d = password.match(/\d/g);
-    return d.length;
+    return d !== null ? d.length : 0;
+  }
+
+  function specialCharsCount(password) {
+    const d = password.match(/\W/g);
+    return d !== null ? d.length : 0;
   }
 
   if (password.length < 6 || password.length > 10) {
     output.push("Password must be between 6 and 10 characters");
   }
 
-  if (password.match(/\W/g)) {
+  if (specialCharsCount(password)> 0) {
     output.push("Password must consist only of letters and digits");
   }
 
   if (digitsCount(password) < 2) {
     output.push("Password must have at least 2 digits");
   }
+
   if (output.length > 0) {
     console.log(output.join("\n"));
   } else {
@@ -24,6 +30,6 @@ function checkPassword(password) {
   }
 }
 
-checkPassword("logIn21");
+checkPassword("Pa$s$s");
 
 // checkPassword("MyPass123");
