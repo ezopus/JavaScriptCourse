@@ -3,9 +3,10 @@ const listElement = document.getElementById("list");
 
 
 const addCourseBtn = document.getElementById("add-course");
-addCourseBtn.addEventListener("click", addCourse)
+addCourseBtn.addEventListener("click", handleAddNewCourseClick)
 
 const editCourseBtn = document.getElementById("edit-course");
+editCourseBtn.addEventListener("click", handleEditCourseClick)
 
 const loadCoursesBtn = document.getElementById("load-course")
 loadCoursesBtn.addEventListener("click", loadCourses)
@@ -37,20 +38,29 @@ async function loadCourses() {
 
         editBtn.addEventListener("click", loadCourseToEdit)
 
-        finishBtn.addEventListener("click", () => {
-            const deleteId = courseWrapper.id;
-            courseWrapper.remove();
-            fetch(`${API_URL}/${deleteId}`, {
-                method: 'DELETE',
-            });
-
-            loadCourses();
-        })
+        finishBtn.addEventListener("click", finishCourse)
     })
 }
 
-async function loadCourseToEdit(e) {
+function handleAddNewCourseClick(e) {
     e.preventDefault();
+    addCourse().then(loadCourses);
+}
+
+async function addCourse() {
+    const title = inputs[0].value;
+    const type = inputs[1].value;
+    const description = inputs[2].value;
+    const teacher = inputs[3].value;
+    await fetch(API_URL, {
+        method: 'POST',
+        body: JSON.stringify({title, type, description, teacher})
+    })
+    inputs.forEach(i => i.value = "");
+}
+
+async function loadCourseToEdit(e) {
+
     const courseWrapper = e.target.parentNode;
     const id = courseWrapper.id;
     courseWrapper.remove();
@@ -64,38 +74,35 @@ async function loadCourseToEdit(e) {
     editCourseBtn.setAttribute("data-id", id);
 }
 
-editCourseBtn.addEventListener("click", (editClickEvent) => {
-    editClickEvent.preventDefault()
+function handleEditCourseClick(e) {
+    e.preventDefault();
+    const courseId = e.target.getAttribute("data-id");
+    submitEditedCourse(courseId);
+}
+
+function submitEditedCourse(courseId) {
     const title = inputs[0].value;
     const type = inputs[1].value;
     const description = inputs[2].value;
     const teacher = inputs[3].value;
-    const id = editClickEvent.target.getAttribute("data-id");
 
-    fetch(`${API_URL}/${id}`, {
+    fetch(`${API_URL}/${courseId}`, {
         method: 'PUT',
-        body: JSON.stringify({title, type, description, teacher, _id: id})
-    }).then();
+        body: JSON.stringify({title, type, description, teacher, _id: courseId})
+    }).then(loadCourses);
 
-    loadCourses().then();
     inputs.forEach(i => i.value = "");
     addCourseBtn.disabled = false;
     editCourseBtn.disabled = true;
     editCourseBtn.removeAttribute("data-id");
-});
+}
 
-async function addCourse(e) {
-    const title = inputs[0].value;
-    const type = inputs[1].value;
-    const description = inputs[2].value;
-    const teacher = inputs[3].value;
-    await fetch(API_URL, {
-        method: 'POST',
-        body: JSON.stringify({title, type, description, teacher})
-    })
-
-    await loadCourses();
-    inputs.forEach(i => i.value = "");
+function finishCourse(e) {
+    const course = e.target.parentNode;
+    course.remove();
+    fetch(`${API_URL}/${course.id}`, {
+        method: 'DELETE',
+    }).then(loadCourses);
 }
 
 function createElement(type, text, classLabel, id, parent) {
