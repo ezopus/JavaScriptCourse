@@ -1,22 +1,19 @@
-function createElement(type, text, classLabel, id, parent) {
+function createElement(type, textContent, classes, id, src, parent) {
     const el = document.createElement(`${type}`);
-    if (text) {
-        el.textContent = text;
+    if (textContent) {
+        el.textContent = textContent;
     }
-    if (classLabel) {
-        if (Array.isArray(classLabel)) {
-            classLabel.forEach(cl => {
-                el.classList.add(`${cl}`)
-            })
-        } else {
-            el.classList.add(`${classLabel}`);
-        }
+    if (classes) {
+        el.classList.add(...classes)
     }
     if (id) {
         el.id = id;
     }
     if (parent) {
         parent.appendChild(el);
+    }
+    if (src) {
+        el.src = `${src}`;
     }
     return el;
 }
