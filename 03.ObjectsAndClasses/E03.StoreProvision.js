@@ -11,9 +11,9 @@ function calcStoreProvisions(stock, delivery) {
     return acc;
   }, {});
 
-  Object.entries(products).forEach(([key, value]) => {
-    console.log(`${key} -> ${value}`);
-  });
+  for (const product in products) {
+    console.log(`${product} -> ${products[product]}`)
+  }
 }
 
 calcStoreProvisions(
