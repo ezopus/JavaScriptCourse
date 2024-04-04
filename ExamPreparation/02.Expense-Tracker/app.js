@@ -63,8 +63,6 @@ function solve() {
         expensesListElement.appendChild(expense);
     }
     function reloadApp(e) {
-        // previewListElement.innerHTML = "";
-        // expensesListElement.innerHTML = "";
         location.reload();
     }
     function createElement(type, text, classLabel, id, parent) {
