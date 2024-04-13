@@ -67,29 +67,29 @@ function solve(input) {
     })
 }
 
-// solve(['Bella|Alexia|Sugar',
-//     'Retake Alexia Sugar',
-//     'Rage Bella',
-//     'Trouble Bella',
-//     'Finish'])
-//
-// console.log("---------------")
-//
-// solve(['Onyx|Domino|Sugar|Fiona',
-//     'Trouble Onyx',
-//     'Retake Onyx Sugar',
-//     'Rage Domino',
-//     'Miracle',
-//     'Finish'])
-//
-// console.log("---------------")
-//
-// solve(['Fancy|Lilly',
-//     'Retake Lilly Fancy',
-//     'Trouble Lilly',
-//     'Trouble Lilly',
-//     'Finish',
-//     'Rage Lilly'])
+solve(['Bella|Alexia|Sugar',
+    'Retake Alexia Sugar',
+    'Rage Bella',
+    'Trouble Bella',
+    'Finish'])
+
+console.log("---------------")
+
+solve(['Onyx|Domino|Sugar|Fiona',
+    'Trouble Onyx',
+    'Retake Onyx Sugar',
+    'Rage Domino',
+    'Miracle',
+    'Finish'])
+
+console.log("---------------")
+
+solve(['Fancy|Lilly',
+    'Retake Lilly Fancy',
+    'Trouble Lilly',
+    'Trouble Lilly',
+    'Finish',
+    'Rage Lilly'])
 
 // solve(['Fancy|Domino|Sugar|Bella', 'Miracle', 'Miracle', "Miracle", 'Finish'])
 // solve(['Fancy|Domino|Sugar|Bella', 'Miracle', 'Retake Bella Fancy', 'Retake Bella Domino', 'Retake Sugar Domino', "Miracle", 'Rage Bella', 'Finish'])
