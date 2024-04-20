@@ -17,3 +17,5 @@ function createElement(type, textContent, classes, id, src, parent) {
     }
     return el;
 }
+
+console.log(Number(true))
